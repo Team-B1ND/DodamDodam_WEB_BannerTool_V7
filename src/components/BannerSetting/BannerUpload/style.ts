@@ -10,8 +10,8 @@ export const BannerPostWrap = styled.div`
 
   padding-top: 14%;
 
-  border: 1px solid ${({ theme }) => theme.borderColor};
-  background-color: ${({ theme }) => theme.backgroundColor3};
+  border: 1px solid #d2d2d2;
+  background-color: #ffffff;
 `;
 
 export const BannerPostItemWrap = styled.div`
@@ -48,7 +48,7 @@ export const BannerSmallInput = styled.input`
 
   padding-left: 10px;
   outline: none;
-  border: 1px solid ${({ theme }) => theme.borderColor};
+  border: 1px solid #d2d2d2;
 `;
 
 export const BannerMidInput = styled.label`
@@ -63,7 +63,7 @@ export const BannerBigInput = styled.input`
 
   padding-left: 10px;
   outline: none;
-  border: 1px solid ${({ theme }) => theme.borderColor};
+  border: 1px solid #d2d2d2;
 `;
 
 export const BannerPostSubmitButton = styled.button`
@@ -93,7 +93,7 @@ export const BannerFileInputBox = styled.input`
   padding-left: 10px;
 
   background: #ffffff;
-  border: 1px solid ${({ theme }) => theme.borderColor};
+  border: 1px solid #d2d2d2;
 
   -webkit-appearance: none;
   -moz-appearance: none;

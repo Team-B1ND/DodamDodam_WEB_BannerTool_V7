@@ -1,7 +1,8 @@
+import BannerBox from "../../common/Box";
 import * as S from "./style";
 
 const BannerHandler = () => {
-  return <S.BannerHandelWrap></S.BannerHandelWrap>;
+  return <BannerBox size="sm"></BannerBox>;
 };
 
 export default BannerHandler;
