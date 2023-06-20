@@ -1,6 +1,6 @@
 import axios from "axios";
-import config from "../../config/config.json";
 import Cookie from "../storage/Cookie";
+import config from "../../config/config.json";
 import { requestInterceptor } from "./requestInterceptor";
 import { responseErrorInterceptor } from "./responseInterceptor";
 import {
