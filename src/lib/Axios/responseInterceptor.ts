@@ -34,7 +34,7 @@ export const responseErrorInterceptor = async (error: AxiosError) => {
         ] = `Bearer ${newAccessToken}`;
       } catch (error) {
         B1ndToast.showError("세션이 만료 되었습니다.");
-        window.location.href = "/teacher";
+        window.location.href = "https://dodam.b1nd.com/sign";
       }
     }
   }
