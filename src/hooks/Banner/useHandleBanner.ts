@@ -31,7 +31,6 @@ const useHandleBanner = ({ id, status }: Props) => {
           onSuccess: () => {
             setIsAllowed(true);
             B1ndToast.showSuccess("배너 활성화 성공");
-            queryClient.invalidateQueries([QUERY_KEYS.banner.get, id]);
           },
         }
       );
