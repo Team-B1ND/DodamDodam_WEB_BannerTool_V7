@@ -6,10 +6,10 @@ export const HeaderContainer = styled.div`
   height: 100px;
   position: fixed;
   top: 0px;
-  background-color: ${({ theme }) => theme.backgroundColor2};
+  background-color: #ffffff;
   display: flex;
   justify-content: center;
-  box-shadow: ${({ theme }) => theme.headerBoxShadow};
+  box-shadow: 0 1px 1px 0 hsl(0deg 0% 80% / 80%);
   z-index: 2;
 `;
 
@@ -49,7 +49,7 @@ export const HeaderItem = styled.div<{ isSelect: boolean }>`
   span {
     text-decoration: none;
     font-size: 18px;
-    color: ${({ theme }) => theme.contrast2};
+    color: #5c5c5c;
     padding: 0px 7px;
     box-sizing: content-box;
     white-space: nowrap;
