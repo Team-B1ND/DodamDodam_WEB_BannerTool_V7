@@ -6,7 +6,7 @@ export interface PostBannerParam {
 }
 
 export interface PatchActiveBannersParam {
-  banners: [];
+  id: number;
 }
 
 export interface PatchDeativateByIdParam {

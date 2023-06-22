@@ -50,8 +50,8 @@ export const useGetBannersQuery = (
   );
 
 export const useActiveBannersMutation = () => {
-  const mutation = useMutation(({ banners }: PatchActiveBannersParam) =>
-    BannerRepositoryImpl.patchActiveBanners({ banners })
+  const mutation = useMutation(({ id }: PatchActiveBannersParam) =>
+    BannerRepositoryImpl.patchActiveBanners({ id })
   );
   return mutation;
 };

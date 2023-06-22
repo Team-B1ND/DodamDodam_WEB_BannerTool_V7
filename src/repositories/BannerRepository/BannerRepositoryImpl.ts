@@ -23,11 +23,10 @@ class BannerRepository {
   }
 
   public async patchActiveBanners({
-    banners,
+    id,
   }: PatchActiveBannersParam): Promise<Response> {
     const { data } = await customAxios.patch<Response>(
-      "/banner/active",
-      banners
+      `/banner/activate/${id}`
     );
     return data;
   }
@@ -36,8 +35,7 @@ class BannerRepository {
     id,
   }: PatchDeativateByIdParam): Promise<Response> {
     const { data } = await customAxios.patch<Response>(
-      `/banner/deativate/${id}`,
-      id
+      `/banner/deactivate/${id}`
     );
     return data;
   }

@@ -2,7 +2,7 @@ import { Response } from "../Util/response.type";
 
 export interface Banner {
   bannerOrder: number | null;
-  readonly createdAt: string;
+  createdDate: string;
   expiryDateTime: string;
   readonly id: number;
   image: string;
