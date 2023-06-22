@@ -3,4 +3,7 @@ export const QUERY_KEYS = {
     get: "banner/getBanners",
     getActive: "banner/getActive",
   },
+  permission: {
+    myPermission: "permission/getPermission",
+  },
 };
