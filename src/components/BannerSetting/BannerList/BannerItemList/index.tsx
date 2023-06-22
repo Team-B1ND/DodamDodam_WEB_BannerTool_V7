@@ -11,7 +11,7 @@ interface Props {
 
 const BannerItemList = ({ data }: Props) => {
   const handleDateTime = dateTransform.hyphen(data.createdDate);
-  const { debounceAllow, isAllowed } = useHandleBanner({
+  const { onChangeBannerAllow, isAllowed, onDeleteBanner } = useHandleBanner({
     id: data.id,
     status: data.status,
   });
@@ -23,7 +23,11 @@ const BannerItemList = ({ data }: Props) => {
   return (
     <S.BannerItemWrap>
       <S.BannerItemFirstBox>
-        <Switch checked={isAllowed} onChange={debounceAllow} size="small" />
+        <Switch
+          checked={isAllowed}
+          onChange={onChangeBannerAllow}
+          size="small"
+        />
         <S.BannerItemText>{handleDateTime}</S.BannerItemText>
       </S.BannerItemFirstBox>
       <S.BannerItemText>{data.title}</S.BannerItemText>
@@ -34,7 +38,7 @@ const BannerItemList = ({ data }: Props) => {
       />
       <MenuDropdown
         sizeType="md"
-        onDelete={onDelete}
+        onDelete={onDeleteBanner}
         onModify={onModify}
         key={data.id}
       />

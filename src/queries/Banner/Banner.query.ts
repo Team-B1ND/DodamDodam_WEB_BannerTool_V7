@@ -8,6 +8,7 @@ import {
 import { BannersResponse } from "../../types/Banner/banner.type";
 import BannerRepositoryImpl from "../../repositories/BannerRepository/BannerRepositoryImpl";
 import {
+  DeleteBannerByIdParam,
   PatchActiveBannersParam,
   PatchDeativateByIdParam,
   PostBannerParam,
@@ -59,6 +60,13 @@ export const useActiveBannersMutation = () => {
 export const useDeativeBannersMutation = () => {
   const mutation = useMutation(({ id }: PatchDeativateByIdParam) =>
     BannerRepositoryImpl.patchDeativateById({ id })
+  );
+  return mutation;
+};
+
+export const useDeleteBannerMutation = () => {
+  const mutation = useMutation(({ id }: DeleteBannerByIdParam) =>
+    BannerRepositoryImpl.deleteBannerById({ id })
   );
   return mutation;
 };
