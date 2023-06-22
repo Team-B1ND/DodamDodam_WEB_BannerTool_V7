@@ -21,6 +21,7 @@ const sizeStyle: Record<SizeType, FlattenSimpleInterpolation> = {
   lg: css`
     width: 700px;
     height: 680px;
+    overflow-y: hidden;
   `,
   sm: css`
     width: 480px;
