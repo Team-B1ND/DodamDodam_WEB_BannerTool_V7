@@ -2,11 +2,13 @@ import {
   PatchActiveBannersParam,
   PatchDeativateByIdParam,
   PostBannerParam,
+  BannerRepository,
+  DeleteBannerByIdParam,
 } from "./BannerRepository";
 import { customAxios } from "../../lib/Axios/customAxios";
 import { BannersResponse } from "../../types/Banner/banner.type";
 
-class BannerRepository {
+class BannerRepositoryImpl implements BannerRepository {
   public async getActiveBanners(): Promise<BannersResponse> {
     const { data } = await customAxios.get<BannersResponse>("/banner/active");
     return data;
@@ -39,6 +41,13 @@ class BannerRepository {
     );
     return data;
   }
+
+  public async deleteBannerById({
+    id,
+  }: DeleteBannerByIdParam): Promise<Response> {
+    const { data } = await customAxios.delete<Response>(`/banner/${id}`);
+    return data;
+  }
 }
 
-export default new BannerRepository();
+export default new BannerRepositoryImpl();
