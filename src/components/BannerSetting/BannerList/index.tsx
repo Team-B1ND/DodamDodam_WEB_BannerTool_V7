@@ -15,7 +15,7 @@ const BannerList = () => {
       <BannerWrapTitle>배너 목록</BannerWrapTitle>
       <S.BannerItemsContainer>
         {data?.data.map((data) => (
-          <BannerItemList data={data} />
+          <BannerItemList key={data.id} data={data} />
         ))}
       </S.BannerItemsContainer>
     </BannerBox>
