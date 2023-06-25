@@ -4,6 +4,7 @@ import PageTemplate from "./components/common/PageTemplate";
 import { BrowserRouter } from "react-router-dom";
 import Router from "./router/Router";
 import { GlobalStyle } from "./styles/GlobalStyles";
+import { RecoilRoot } from "recoil";
 
 function App() {
   const queryClient = new QueryClient({
@@ -20,13 +21,15 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <B1ndToastContainer autoClose={1000} limit={1} />
-      <BrowserRouter basename="/bannersetting">
-        <GlobalStyle />
-        <PageTemplate>
-          <Router />
-        </PageTemplate>
-      </BrowserRouter>
+      <RecoilRoot>
+        <B1ndToastContainer autoClose={1000} limit={1} />
+        <BrowserRouter basename="/bannersetting">
+          <GlobalStyle />
+          <PageTemplate>
+            <Router />
+          </PageTemplate>
+        </BrowserRouter>
+      </RecoilRoot>
     </QueryClientProvider>
   );
 }

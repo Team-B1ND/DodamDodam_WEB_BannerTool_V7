@@ -1,9 +1,13 @@
-import { BannersResponse } from "../../types/Banner/banner.type";
+import {
+  BannerApply,
+  BannerResponse,
+  BannersResponse,
+} from "../../types/Banner/banner.type";
 
 export interface BannerRepository {
   getActiveBanners(): Promise<BannersResponse>;
 
-  postBanners(uploadData: PostBannerParam): Promise<Response>;
+  postBanners(uploadData: BannerApply): Promise<Response>;
 
   getBanners(): Promise<BannersResponse>;
 
@@ -12,13 +16,14 @@ export interface BannerRepository {
   patchDeativateById({ id }: PatchDeativateByIdParam): Promise<Response>;
 
   deleteBannerById({ id }: DeleteBannerByIdParam): Promise<Response>;
+
+  patchBanenrById({ id, data }: PatchBannerByIdParam): Promise<void>;
+
+  getBannerById({ id }: GetBannerByIdParam): Promise<BannerResponse>;
 }
 
-export interface PostBannerParam {
-  expireDateTime: string;
-  image: string;
-  title: string;
-  url: string;
+export interface GetBannerByIdParam {
+  id: number;
 }
 
 export interface PatchActiveBannersParam {
@@ -31,4 +36,9 @@ export interface PatchDeativateByIdParam {
 
 export interface DeleteBannerByIdParam {
   id: number;
+}
+
+export interface PatchBannerByIdParam {
+  id: number;
+  data: BannerApply;
 }

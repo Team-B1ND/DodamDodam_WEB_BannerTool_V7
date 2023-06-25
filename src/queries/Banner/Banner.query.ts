@@ -5,13 +5,18 @@ import {
   UseQueryOptions,
   UseQueryResult,
 } from "react-query";
-import { BannersResponse } from "../../types/Banner/banner.type";
+import {
+  BannerApply,
+  BannerResponse,
+  BannersResponse,
+} from "../../types/Banner/banner.type";
 import BannerRepositoryImpl from "../../repositories/BannerRepository/BannerRepositoryImpl";
 import {
   DeleteBannerByIdParam,
+  GetBannerByIdParam,
   PatchActiveBannersParam,
+  PatchBannerByIdParam,
   PatchDeativateByIdParam,
-  PostBannerParam,
 } from "../../repositories/BannerRepository/BannerRepository";
 import { QUERY_KEYS } from "../QueryKey";
 
@@ -30,7 +35,7 @@ export const useGetActiveBannersQuery = (
   );
 
 export const useUploadBannerMutation = () => {
-  const mutation = useMutation((bannerData: PostBannerParam) =>
+  const mutation = useMutation((bannerData: BannerApply) =>
     BannerRepositoryImpl.postBanners(bannerData)
   );
   return mutation;
@@ -70,3 +75,27 @@ export const useDeleteBannerMutation = () => {
   );
   return mutation;
 };
+
+export const usePatchBannerMutation = () => {
+  const mutation = useMutation(({ id, data }: PatchBannerByIdParam) =>
+    BannerRepositoryImpl.patchBanenrById({ id, data })
+  );
+  return mutation;
+};
+
+export const useGetBannerByIdQuery = (
+  { id }: GetBannerByIdParam,
+  options?: UseQueryOptions<
+    BannerResponse,
+    AxiosError,
+    BannerResponse,
+    (string | number)[]
+  >
+) =>
+  useQuery(
+    [QUERY_KEYS.banner.getById, id],
+    () => BannerRepositoryImpl.getBannerById({ id }),
+    {
+      ...options,
+    }
+  );

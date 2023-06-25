@@ -3,12 +3,16 @@ import { useUploadBannerMutation } from "../../queries/Banner/Banner.query";
 import { useUploadImageMutation } from "../../queries/Upload/Upload.query";
 import { ChangeEvent, useState } from "react";
 import { useQueryClient } from "react-query";
+import { useRecoilState } from "recoil";
+import { BannerImageAtom } from "../../store/BannerImageAtom";
 
 const useUplodaBanner = () => {
   const queryClient = useQueryClient();
   const uploadBannerMutation = useUploadBannerMutation();
   const [fileName, setFileName] = useState<File>();
   const uploadMutation = useUploadImageMutation();
+  const [, setBannerImage] = useRecoilState(BannerImageAtom);
+
   const [uploadData, setUploadData] = useState({
     expireDateTime: "",
     image: "",
@@ -31,6 +35,7 @@ const useUplodaBanner = () => {
       {
         onSuccess: (data) => {
           setUploadData((prev) => ({ ...prev, image: data.data }));
+          setBannerImage(data.data);
         },
       }
     );
@@ -52,6 +57,7 @@ const useUplodaBanner = () => {
       },
       {
         onSuccess: () => {
+          setBannerImage("");
           B1ndToast.showSuccess("배너가 등록되었습니다");
           queryClient.invalidateQueries("");
         },
