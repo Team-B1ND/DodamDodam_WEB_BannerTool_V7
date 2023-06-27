@@ -1,9 +1,25 @@
 import * as S from "./style";
 import useUplodaBanner from "../../../hooks/Banner/useUploadBanner";
+import useModifyBanner from "../../../hooks/Banner/useModifyBanner";
+import { useRecoilValue } from "recoil";
+import { BannerIdAtom, BannerSetModifyAtom } from "../../../store/BannerAtom";
 
 const BannerUpload = () => {
-  const { onChangeUploadData, onSubmitUploadData, onChangeImage, fileName } =
-    useUplodaBanner();
+  const bannerId = useRecoilValue(BannerIdAtom);
+  const isModify = useRecoilValue(BannerSetModifyAtom);
+
+  const {
+    onChangeUploadData,
+    onSubmitUploadData,
+    fileName,
+    bannerData,
+    onChangeImage,
+  } = useUplodaBanner();
+
+  const { modifyBannerData, onChangeModifyContent, onSubmitModifyBanner } =
+    useModifyBanner({ id: bannerId });
+
+  console.log(bannerData.expireDateTime);
 
   return (
     <S.BannerPostWrap>
@@ -11,14 +27,23 @@ const BannerUpload = () => {
         <S.BannerFlex>
           <S.BannerInputBox>
             <S.BannerInputName>제목</S.BannerInputName>
-            <S.BannerSmallInput name="title" onChange={onChangeUploadData} />
+            <S.BannerSmallInput
+              name="title"
+              value={isModify ? modifyBannerData.title : bannerData.title}
+              onChange={isModify ? onChangeModifyContent : onChangeUploadData}
+            />
           </S.BannerInputBox>
           <S.BannerInputBox>
             <S.BannerInputName>보관 기관</S.BannerInputName>
             <S.BannerSmallInput
               name="expireDateTime"
-              onChange={onChangeUploadData}
+              onChange={isModify ? onChangeModifyContent : onChangeUploadData}
               type="date"
+              value={
+                isModify
+                  ? modifyBannerData.expireDateTime
+                  : bannerData.expireDateTime
+              }
             />
           </S.BannerInputBox>
         </S.BannerFlex>
@@ -26,7 +51,8 @@ const BannerUpload = () => {
           <S.BannerInputName>링크</S.BannerInputName>
           <S.BannerBigInput
             name="url"
-            onChange={onChangeUploadData}
+            onChange={isModify ? onChangeModifyContent : onChangeUploadData}
+            value={isModify ? modifyBannerData.url : bannerData.url}
             placeholder="https://dodam.b1nd.com"
           />
         </S.BannerInputBox>
@@ -40,7 +66,7 @@ const BannerUpload = () => {
             <S.BannerFileLabel htmlFor="file">이미지 선택</S.BannerFileLabel>
             <S.BannerFileInput
               name="image"
-              onChange={onChangeImage}
+              onChange={isModify ? onChangeModifyContent : onChangeImage}
               type="file"
               id="file"
             />
@@ -48,8 +74,10 @@ const BannerUpload = () => {
         </S.BannerInputBox>
       </S.BannerPostItemWrap>
       <S.BannerButtonBox>
-        <S.BannerPostSubmitButton onClick={onSubmitUploadData}>
-          등록
+        <S.BannerPostSubmitButton
+          onClick={isModify ? onSubmitModifyBanner : onSubmitUploadData}
+        >
+          {isModify ? "수정" : "등록"}
         </S.BannerPostSubmitButton>
       </S.BannerButtonBox>
     </S.BannerPostWrap>

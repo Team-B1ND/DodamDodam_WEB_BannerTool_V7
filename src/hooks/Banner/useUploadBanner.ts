@@ -4,7 +4,7 @@ import { useUploadImageMutation } from "../../queries/Upload/Upload.query";
 import { ChangeEvent, useState } from "react";
 import { useQueryClient } from "react-query";
 import { useRecoilState } from "recoil";
-import { BannerImageAtom } from "../../store/BannerImageAtom";
+import { BannerImageAtom } from "../../store/BannerAtom";
 
 const useUplodaBanner = () => {
   const queryClient = useQueryClient();
@@ -13,7 +13,7 @@ const useUplodaBanner = () => {
   const uploadMutation = useUploadImageMutation();
   const [, setBannerImage] = useRecoilState(BannerImageAtom);
 
-  const [uploadData, setUploadData] = useState({
+  const [bannerData, setBannerData] = useState({
     expireDateTime: "",
     image: "",
     title: "",
@@ -34,7 +34,7 @@ const useUplodaBanner = () => {
       },
       {
         onSuccess: (data) => {
-          setUploadData((prev) => ({ ...prev, image: data.data }));
+          setBannerData((prev) => ({ ...prev, image: data.data }));
           setBannerImage(data.data);
         },
       }
@@ -43,11 +43,11 @@ const useUplodaBanner = () => {
 
   const onChangeUploadData = (e: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setUploadData((prev) => ({ ...prev, [name]: value }));
+    setBannerData((prev) => ({ ...prev, [name]: value }));
   };
 
   const onSubmitUploadData = () => {
-    const { expireDateTime, image, title, url } = uploadData;
+    const { expireDateTime, image, title, url } = bannerData;
     uploadBannerMutation.mutate(
       {
         expireDateTime,
@@ -58,8 +58,8 @@ const useUplodaBanner = () => {
       {
         onSuccess: () => {
           setBannerImage("");
-          B1ndToast.showSuccess("배너가 등록되었습니다");
           queryClient.invalidateQueries("");
+          B1ndToast.showSuccess("배너가 등록되었습니다");
         },
         onError: () => {
           B1ndToast.showError("배너 등록 실패");
@@ -73,6 +73,7 @@ const useUplodaBanner = () => {
     onSubmitUploadData,
     onChangeUploadData,
     onChangeImage,
+    bannerData,
   };
 };
 
