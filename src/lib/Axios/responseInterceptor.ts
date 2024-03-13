@@ -6,7 +6,7 @@ import {
   REQUEST_TOKEN_KEY,
 } from "../../constants/Token/Token.constant";
 import Token from "../Token/Token";
-import { customAxios } from "./customAxios";
+import { dodamAxios } from "./dodamAxios";
 import AuthRepositoryImpl from "../../repositories/AuthRepositroy/AuthRepositoryImpl";
 
 export const responseErrorInterceptor = async (error: AxiosError) => {
@@ -31,7 +31,7 @@ export const responseErrorInterceptor = async (error: AxiosError) => {
 
         Token.set(ACCESS_TOKEN_KEY, newAccessToken);
 
-        customAxios.defaults.headers.common[
+        dodamAxios.defaults.headers.common[
           REQUEST_TOKEN_KEY
         ] = `Bearer ${newAccessToken}`;
       } catch (error) {

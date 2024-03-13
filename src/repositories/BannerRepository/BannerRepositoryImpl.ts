@@ -5,43 +5,43 @@ import {
   BannerRepository,
   DeleteBannerByIdParam,
 } from "./BannerRepository";
-import { customAxios } from "../../lib/Axios/customAxios";
+import { dodamAxios } from "../../lib/Axios/dodamAxios";
 import { BannersResponse } from "../../types/Banner/banner.type";
 
 class BannerRepositoryImpl implements BannerRepository {
   public async getActiveBanners(): Promise<BannersResponse> {
-    const { data } = await customAxios.get("/banner/active");
+    const { data } = await dodamAxios.get("/banner/active");
     return data;
   }
 
   public async postBanners(uploadData: PostBannerParam): Promise<Response> {
-    const { data } = await customAxios.post("/banner", uploadData);
+    const { data } = await dodamAxios.post("/banner", uploadData);
     return data;
   }
 
   public async getBanners(): Promise<BannersResponse> {
-    const { data } = await customAxios.get("/banner");
+    const { data } = await dodamAxios.get("/banner");
     return data;
   }
 
   public async patchActiveBanners({
     id,
   }: PatchActiveBannersParam): Promise<Response> {
-    const { data } = await customAxios.patch(`/banner/activate/${id}`);
+    const { data } = await dodamAxios.patch(`/banner/activate/${id}`);
     return data;
   }
 
   public async patchDeativateById({
     id,
   }: PatchDeativateByIdParam): Promise<Response> {
-    const { data } = await customAxios.patch(`/banner/deactivate/${id}`);
+    const { data } = await dodamAxios.patch(`/banner/deactivate/${id}`);
     return data;
   }
 
   public async deleteBannerById({
     id,
   }: DeleteBannerByIdParam): Promise<Response> {
-    const { data } = await customAxios.delete(`/banner/${id}`);
+    const { data } = await dodamAxios.delete(`/banner/${id}`);
     return data;
   }
 }
