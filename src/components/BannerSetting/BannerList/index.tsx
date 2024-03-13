@@ -2,7 +2,7 @@ import * as S from "./style";
 import { BannerWrapTitle } from "../style";
 import { useGetBannersQuery } from "../../../queries/Banner/Banner.query";
 import BannerBox from "../../common/Box";
-import BannerItemList from "./BannerItemList";
+import BannerItem from "./BannerItem";
 
 const BannerList = () => {
   const { data } = useGetBannersQuery({
@@ -15,7 +15,7 @@ const BannerList = () => {
       <BannerWrapTitle>배너 목록</BannerWrapTitle>
       <S.BannerItemsContainer>
         {data?.data.map((data) => (
-          <BannerItemList key={data.id} data={data} />
+          <BannerItem key={data.id} data={data} />
         ))}
       </S.BannerItemsContainer>
     </BannerBox>

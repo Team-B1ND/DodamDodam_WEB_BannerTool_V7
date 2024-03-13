@@ -23,14 +23,13 @@ const useHandleBanner = ({ id, status }: Props) => {
     status === "ACTIVE" ? true : false
   );
 
-  const onChangeBannerAllow = () => {
+  const handleChangeBannerAllow = () => {
     if (!isAllowed) {
       activeBannerMutation.mutate(
         { id },
         {
           onSuccess: () => {
             setIsAllowed(true);
-            B1ndToast.showSuccess("배너 활성화 성공");
           },
         }
       );
@@ -40,29 +39,34 @@ const useHandleBanner = ({ id, status }: Props) => {
         {
           onSuccess: () => {
             setIsAllowed(false);
-            B1ndToast.showSuccess("배너 비활성화 성공");
           },
         }
       );
     }
   };
 
-  const onDeleteBanner = () => {
-    deleteBannerMutation.mutate(
-      { id },
-      {
-        onSuccess: () => {
-          B1ndToast.showSuccess("배너 삭제 성공");
-          queryClient.invalidateQueries([QUERY_KEYS.banner.get]);
-        },
-        onError: () => {
-          B1ndToast.showError("배너 삭제 실패");
-        },
-      }
-    );
+  const handleDeleteBanner = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    const answer = window.confirm("배너를 삭제하시겠습니까?");
+
+    if (answer) {
+      deleteBannerMutation.mutate(
+        { id },
+        {
+          onSuccess: () => {
+            B1ndToast.showSuccess("배너 삭제 성공");
+            queryClient.invalidateQueries([QUERY_KEYS.banner.get]);
+          },
+          onError: () => {
+            B1ndToast.showError("배너 삭제 실패");
+          },
+        }
+      );
+    }
   };
 
-  return { onChangeBannerAllow, isAllowed, onDeleteBanner };
+  return { isAllowed, handleChangeBannerAllow, handleDeleteBanner };
 };
 
 export default useHandleBanner;

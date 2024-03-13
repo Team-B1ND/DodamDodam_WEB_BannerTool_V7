@@ -7,7 +7,7 @@
     "@b1nd/b1nd-dodam-common-ui": "^1.0.3",
     "@b1nd/b1nd-styled-components-theme": "^1.0.7",
     "@b1nd/b1nd-styled-components-util": "^1.0.4",
-    "@b1nd/b1nd-toastify": "^1.0.3",
+    "@b1nd/b1nd-toastify": "^2.0.0",
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
     "@mui/material": "^5.13.5",
@@ -27,6 +27,7 @@
     "react-query": "^3.39.3",
     "react-router-dom": "^6.13.0",
     "react-scripts": "5.0.1",
+    "react-toastify": "^10.0.4",
     "styled-components": "^5.3.10",
     "typescript": "^4.9.5",
     "web-vitals": "^2.1.4"

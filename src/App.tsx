@@ -21,7 +21,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <B1ndToastContainer autoClose={1000} limit={1} />
-      <BrowserRouter basename="/bannersetting">
+      <BrowserRouter>
         <GlobalStyle />
         <PageTemplate>
           <Router />

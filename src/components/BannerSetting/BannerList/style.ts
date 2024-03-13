@@ -13,6 +13,5 @@ export const BannerListWrap = styled.div`
 export const BannerItemsContainer = styled.div`
   width: 100%;
   height: calc(100% - 8px);
-
   overflow-y: auto;
 `;

@@ -7,7 +7,7 @@ import {
 } from "../../constants/Token/Token.constant";
 import Token from "../Token/Token";
 import { customAxios } from "./customAxios";
-import TokenRepositoryImpl from "../../repositories/TokenRepositoty/TokenRepositoryImpl";
+import AuthRepositoryImpl from "../../repositories/AuthRepositroy/AuthRepositoryImpl";
 
 export const responseErrorInterceptor = async (error: AxiosError) => {
   if (error.response) {
@@ -24,11 +24,13 @@ export const responseErrorInterceptor = async (error: AxiosError) => {
       status === 401
     ) {
       try {
-        const { data: newAccessToken } = await TokenRepositoryImpl.postRefresh({
-          token: usingRefreshToken,
-        });
+        const { data: newAccessToken } =
+          await AuthRepositoryImpl.refreshAccessToken({
+            refreshToken: usingRefreshToken,
+          });
 
         Token.set(ACCESS_TOKEN_KEY, newAccessToken);
+
         customAxios.defaults.headers.common[
           REQUEST_TOKEN_KEY
         ] = `Bearer ${newAccessToken}`;
