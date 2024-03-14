@@ -69,6 +69,7 @@ export const BannerBigInput = styled.input`
 export const BannerPostSubmitButton = styled.button`
   width: 70px;
   height: 35px;
+  cursor: pointer;
 
   background: #267ec6;
   color: white;

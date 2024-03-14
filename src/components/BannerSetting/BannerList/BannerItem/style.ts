@@ -1,18 +1,20 @@
 import styled from "styled-components";
 
 export const BannerItemWrap = styled.div`
-  width: 100%;
-  height: 50px;
+  width: 688px;
+  height: 64px;
 
   display: flex;
+  align-items: center;
   justify-content: space-around;
-  border-bottom: 1px solid gray;
+
+  padding: 10px 0 10px 0;
+  border-bottom: 1px solid #ddd;
 `;
 
 export const BannerItemText = styled.p`
   font-weight: 500;
   font-size: 14px;
-
   color: #282828;
 `;
 
@@ -30,4 +32,20 @@ export const BannerItemFirstBox = styled.div`
 
   width: 120px;
   height: 100%;
+`;
+
+export const DeleteButton = styled.button`
+  background-color: #2196f3;
+  width: 57px;
+  height: 30px;
+  color: #fff;
+
+  outline: none;
+  border: none;
+  border-radius: 7px;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

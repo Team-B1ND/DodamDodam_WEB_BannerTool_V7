@@ -11,12 +11,16 @@ const BannerUpload = () => {
         <S.BannerFlex>
           <S.BannerInputBox>
             <S.BannerInputName>제목</S.BannerInputName>
-            <S.BannerSmallInput name="title" onChange={onChangeUploadData} />
+            <S.BannerSmallInput
+              name="title"
+              placeholder="제목을 입력해주세요."
+              onChange={onChangeUploadData}
+            />
           </S.BannerInputBox>
           <S.BannerInputBox>
             <S.BannerInputName>보관 기관</S.BannerInputName>
             <S.BannerSmallInput
-              name="expireDateTime"
+              name="expireAt"
               onChange={onChangeUploadData}
               type="date"
             />

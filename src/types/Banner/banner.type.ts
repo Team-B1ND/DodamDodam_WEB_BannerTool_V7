@@ -1,11 +1,9 @@
 import { Response } from "../Util/response.type";
 
 export interface Banner {
-  bannerOrder: number | null;
-  createdDate: string;
-  expiryDateTime: string;
+  expireAt: string;
   readonly id: number;
-  image: string;
+  imageUrl: string;
   redirectUrl: string;
   status: "ACTIVE" | "DEACTIVETED";
   title: string;

@@ -1,4 +1,4 @@
-import { customAxios } from "../../lib/Axios/customAxios";
+import { dodamAxios } from "../../lib/Axios/dodamAxios";
 import {
   PostUploadParams,
   PostUploadResponse,
@@ -9,7 +9,7 @@ class UploadRepositoryImpl implements UploadRepository {
   public async postUpload({
     formData,
   }: PostUploadParams): Promise<PostUploadResponse> {
-    const { data } = await customAxios.post("/upload", formData);
+    const { data } = await dodamAxios.post("/upload", formData);
     return data;
   }
 }

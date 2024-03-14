@@ -4,13 +4,13 @@ import {
   REFRESH_TOKEN_KEY,
 } from "../../constants/Token/Token.constant";
 import Token from "../../lib/Token/Token";
-import { useGetMyPermissionQuery } from "../../queries/Permission/Permission.query";
+import { useGetMyMemberQuery } from "../../queries/Member/Member.query";
 
 const withAuth = (AuthComponent: React.ComponentType) => {
   const AuthCheck = () => {
     const [isBannerAuthority, setIsBanneerAuthority] = useState(false);
 
-    const permissionData = useGetMyPermissionQuery({
+    const memberData = useGetMyMemberQuery({
       cacheTime: 1000 * 60 * 60 * 24,
       staleTime: 1000 * 60 * 30 * 24,
     }).data?.data;
@@ -20,12 +20,8 @@ const withAuth = (AuthComponent: React.ComponentType) => {
       Token.get(REFRESH_TOKEN_KEY) !== undefined;
 
     useEffect(() => {
-      if (permissionData) {
-        if (
-          permissionData.find(
-            (permission) => permission.permission === "CTRL_BANNER"
-          )
-        ) {
+      if (memberData) {
+        if (memberData.role === "ADMIN") {
           setIsBanneerAuthority(true);
         } else {
           setIsBanneerAuthority(false);
@@ -33,7 +29,7 @@ const withAuth = (AuthComponent: React.ComponentType) => {
           window.location.href = "https://dodam.b1nd.com";
         }
       }
-    }, [permissionData]);
+    }, [memberData]);
 
     if (!isAuthority && !isBannerAuthority) {
       return <></>;

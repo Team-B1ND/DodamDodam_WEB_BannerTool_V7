@@ -15,7 +15,7 @@ export interface BannerRepository {
 }
 
 export interface PostBannerParam {
-  expireDateTime: string;
+  expireAt: string;
   image: string;
   title: string;
   url: string;

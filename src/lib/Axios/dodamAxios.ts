@@ -8,16 +8,16 @@ import {
   REQUEST_TOKEN_KEY,
 } from "../../constants/Token/Token.constant";
 
-export const customAxios = axios.create({
+export const dodamAxios = axios.create({
   baseURL: config.DODAM_SERVER_V6,
   headers: {
     [REQUEST_TOKEN_KEY]: `Bearer ${Cookie.get(ACCESS_TOKEN_KEY)}`,
   },
 });
 
-customAxios.interceptors.request.use(requestInterceptor);
+dodamAxios.interceptors.request.use(requestInterceptor);
 
-customAxios.interceptors.response.use(
+dodamAxios.interceptors.response.use(
   (config) => config,
   responseErrorInterceptor
 );
