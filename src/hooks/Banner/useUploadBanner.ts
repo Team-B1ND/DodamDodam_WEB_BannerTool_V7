@@ -85,6 +85,12 @@ const useUplodaBanner = () => {
           onSuccess: () => {
             B1ndToast.showSuccess("배너가 등록되었습니다");
             queryClient.invalidateQueries(QUERY_KEYS.banner.get);
+            setUploadData({
+              expireAt: "",
+              image: "",
+              title: "",
+              url: "",
+            });
           },
           onError: () => {
             B1ndToast.showError("배너 등록 실패");
@@ -99,6 +105,7 @@ const useUplodaBanner = () => {
     onSubmitUploadData,
     onChangeUploadData,
     onChangeImage,
+    uploadData,
   };
 };
 

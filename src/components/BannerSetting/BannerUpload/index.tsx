@@ -2,8 +2,13 @@ import * as S from "./style";
 import useUplodaBanner from "../../../hooks/Banner/useUploadBanner";
 
 const BannerUpload = () => {
-  const { onChangeUploadData, onSubmitUploadData, onChangeImage, fileName } =
-    useUplodaBanner();
+  const {
+    onChangeUploadData,
+    onSubmitUploadData,
+    onChangeImage,
+    fileName,
+    uploadData,
+  } = useUplodaBanner();
 
   return (
     <S.BannerPostWrap>
@@ -14,6 +19,7 @@ const BannerUpload = () => {
             <S.BannerSmallInput
               name="title"
               placeholder="제목을 입력해주세요."
+              value={uploadData.title}
               onChange={onChangeUploadData}
             />
           </S.BannerInputBox>
@@ -21,6 +27,7 @@ const BannerUpload = () => {
             <S.BannerInputName>보관 기관</S.BannerInputName>
             <S.BannerSmallInput
               name="expireAt"
+              value={uploadData.expireAt}
               onChange={onChangeUploadData}
               type="date"
             />
@@ -30,6 +37,7 @@ const BannerUpload = () => {
           <S.BannerInputName>링크</S.BannerInputName>
           <S.BannerBigInput
             name="url"
+            value={uploadData.url}
             onChange={onChangeUploadData}
             placeholder="https://dodam.b1nd.com"
           />
@@ -38,7 +46,7 @@ const BannerUpload = () => {
           <S.BannerInputName>이미지</S.BannerInputName>
           <S.BannerFlex>
             <S.BannerFileInputBox
-              value={fileName ? fileName.name : "파일을 선택해주세요"}
+              value={uploadData.image ? fileName?.name : "파일을 선택해주세요"}
               disabled
             />
             <S.BannerFileLabel htmlFor="file">이미지 선택</S.BannerFileLabel>
