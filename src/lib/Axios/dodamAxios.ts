@@ -9,7 +9,7 @@ import {
 } from "../../constants/Token/Token.constant";
 
 export const dodamAxios = axios.create({
-  baseURL: config.DODAM_SERVER_V6,
+  baseURL: config.DODAM_SERVER,
   headers: {
     [REQUEST_TOKEN_KEY]: `Bearer ${Cookie.get(ACCESS_TOKEN_KEY)}`,
   },
